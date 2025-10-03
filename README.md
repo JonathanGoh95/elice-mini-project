@@ -1,16 +1,22 @@
-# React + Vite
+# Elice Mini Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Technology Stack
+- MERN (MongoDB, Express JS, React JS, Node JS) Stack
+- Frontend: React, due to experience in using it during the General Assembly Software Bootcamp
+- Backend: Express, same as the above.
+- Database: MongoDB, same as the above.
+- Alternatives: Flask (Python) and PostGreSQL for the Backend and Database respectively. Due to the time constraint and less experience in using it, I opted to utilise the MERN stack instead.
 
-Currently, two official plugins are available:
+## API
+- The APIs used are the Youtube API and the Google Books API. The former requires the use of an API key while the latter does not for authentication purposes.
+- As the API for Youtube requires the use of an API key under Google Cloud, an account would have to be created before retrieving and using the key.
+- API rate limits are inevitable without paying a fee for it and the project context would be much needed to determine the amount of times the API needs to be accessed through the project's lifetime.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Performance and Scalability
+- As the API call currently limits the Youtube and Book results to 9 each, there isn't really a case of increased load, unless pagination is implemented.
+- In addition to the previous point, bottlenecks shouldn't pose an issue due to the amount of results being displayed at any given time.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Integration
+- The Youtube and Books APIs under Google Cloud are arguably one of the most well-known public APIs available for personal use. As such, there is no question in using them for this mini project.
+- Try, Catch statements are used when fetching data from the API in the backend, as well as calling the route from the frontend service to ensure that the errors are reflected accordingly to the user when encountered.
+- Currently, the Youtube API key, MongoDB Connection URL and Backend URL are stored in .env files both in the frontend and backend folders, with its file type included in the .gitignore file such that only the developer(s) can have access to it and that these confidential data are not pushed to the GitHub remote repository.
