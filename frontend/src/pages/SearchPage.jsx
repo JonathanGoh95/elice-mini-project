@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../../services/service";
+import api from "../services/service.js";
 import ResourceCard from "../components/ResourceCard";
 
 export default function SearchPage() {
@@ -17,7 +17,7 @@ export default function SearchPage() {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-4">Search Resources</h2>
+      <h2 className="text-4xl font-semibold mb-4">Search Resources</h2>
       <div className="flex space-x-2 mb-6">
         <input
           value={q}
@@ -32,16 +32,16 @@ export default function SearchPage() {
           Search
         </button>
       </div>
-      <h3 className="text-xl font-medium mt-6 mb-2">Videos</h3>
+      <div className="flex justify-center"><h3 className="text-3xl font-medium mt-4 mb-4">Videos</h3></div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {(results.youtube || []).map((r) => (
-          <ResourceCard key={r.externalId} resource={r} />
+          <ResourceCard key={r.externalId} resource={r} type="video" />
         ))}
       </div>
-      <h3 className="text-xl font-medium mt-6 mb-2">Books</h3>
+      <div className="flex justify-center"><h3 className="text-3xl font-medium mt-8 mb-4">Books</h3></div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {(results.books || []).map((r) => (
-          <ResourceCard key={r.externalId} resource={r} />
+          <ResourceCard key={r.externalId} resource={r} type="book" />
         ))}
       </div>
     </div>

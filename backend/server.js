@@ -21,7 +21,7 @@ const app = express();
 app.use(cors());
 app.use(json());
 app.use(logger("dev"));
-app.use("api/resources", resources);
+app.use("/api/resources", resources);
 
 // Start the server and listen on port 5000
 app.listen(5000, () => {

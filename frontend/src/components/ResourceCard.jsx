@@ -1,6 +1,6 @@
-import api from "../../services/service";
+import api from "../services/service.js";
 
-export default function ResourceCard({ resource }) {
+const ResourceCard = ({ resource, onRemove, type }) => {
   const save = async () => {
     await api.post("/resources/save", resource);
     alert("Saved!");
@@ -12,13 +12,24 @@ export default function ResourceCard({ resource }) {
     alert("Updated!");
   };
 
+  const remove = async () => {
+    if (!resource._id) return alert("Not in saved list");
+    await api.delete(`/resources/${resource._id}`);
+    alert("Deleted");
+    if (onRemove) onRemove(resource._id);
+  };
+
   return (
-    <div className="bg-white rounded-lg shadow p-4 flex flex-col">
+    <div className="bg-gray-200 rounded-lg shadow p-4 flex flex-col">
       {resource.thumbnail && (
         <img
           src={resource.thumbnail}
           alt="thumbnailImg"
-          className="w-full h-40 object-cover rounded mb-2"
+          className={
+            type === "video"
+              ? "w-full h-70 object-cover rounded mb-2"
+              : "w-full h-80 object-contain mb-2"
+          }
         />
       )}
       <h4 className="font-semibold text-lg mb-1">{resource.title}</h4>
@@ -42,6 +53,14 @@ export default function ResourceCard({ resource }) {
         >
           Complete
         </button>
+        {onRemove && (
+          <button
+            onClick={remove}
+            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+          >
+            Remove
+          </button>
+        )}
         <a
           href={resource.externalLink}
           target="_blank"
@@ -53,4 +72,6 @@ export default function ResourceCard({ resource }) {
       </div>
     </div>
   );
-}
+};
+
+export default ResourceCard;
