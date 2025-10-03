@@ -1,4 +1,4 @@
-import Resource from "../models/Resource";
+import Resource from "../models/Resource.js";
 
 const save = async (req, res) => {
   const { externalId, type, title, externalLink, thumbnail, description } =

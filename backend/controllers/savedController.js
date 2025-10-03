@@ -1,4 +1,4 @@
-import Resource from "../models/Resource";
+import Resource from "../models/Resource.js";
 
 const saved = async (req, res) => {
   const resources = await Resource.find();

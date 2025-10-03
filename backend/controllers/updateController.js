@@ -1,4 +1,4 @@
-import Resource from "../models/Resource";
+import Resource from "../models/Resource.js";
 
 const update = async (req, res) => {
   const { status } = req.body;

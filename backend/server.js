@@ -1,19 +1,20 @@
 // bun
-import { config } from "dotenv";
-config();
+import dotenv from "dotenv";
+dotenv.config();
 import express, { json } from "express";
-import { connect, set, connection } from "mongoose";
+import mongoose from "mongoose";
 import cors from "cors";
 import logger from "morgan";
 
 // Import routers and controllers
-import resources from "./routers/resources";
+import resources from "./routers/resources.js";
 
 // Connect to MongoDB
-connect(`${import.meta.env.MONGODB_URI}`);
-set("debug", true);
-connection.on("connected", () => {
-  console.log(`Connected to MongoDB ${connection.name}.`);
+// eslint-disable-next-line no-undef
+mongoose.connect(process.env.MONGODB_URI);
+mongoose.set("debug", true);
+mongoose.connection.on("connected", () => {
+  console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
 const app = express();

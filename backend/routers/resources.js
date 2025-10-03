@@ -1,8 +1,8 @@
 import { Router } from "express";
-import search from "../controllers/searchController";
-import save from "../controllers/saveController";
-import update from "../controllers/updateController";
-import saved from "../controllers/savedController";
+import search from "../controllers/searchController.js";
+import save from "../controllers/saveController.js";
+import update from "../controllers/updateController.js";
+import saved from "../controllers/savedController.js";
 const router = Router();
 
 // Search YouTube + Books
