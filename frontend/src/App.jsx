@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 export default function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50 text-gray-800">
+      <div className="min-h-screen bg-gray-100 text-gray-800">
         <Navbar />
         <div className="p-6">
           <Routes>

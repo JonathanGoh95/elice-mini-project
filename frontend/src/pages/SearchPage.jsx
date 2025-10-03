@@ -17,7 +17,9 @@ export default function SearchPage() {
 
   return (
     <div>
-      <h2 className="text-4xl font-semibold mb-4">Search Resources</h2>
+      <div className="flex justify-center">
+        <h2 className="text-4xl font-semibold mb-4">Search Resources</h2>
+      </div>
       <div className="flex space-x-2 mb-6">
         <input
           value={q}
@@ -32,13 +34,17 @@ export default function SearchPage() {
           Search
         </button>
       </div>
-      <div className="flex justify-center"><h3 className="text-3xl font-medium mt-4 mb-4">Videos</h3></div>
+      <div className="flex justify-center">
+        <h3 className="text-3xl font-medium mt-4 mb-4">Videos</h3>
+      </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {(results.youtube || []).map((r) => (
           <ResourceCard key={r.externalId} resource={r} type="video" />
         ))}
       </div>
-      <div className="flex justify-center"><h3 className="text-3xl font-medium mt-8 mb-4">Books</h3></div>
+      <div className="flex justify-center">
+        <h3 className="text-3xl font-medium mt-8 mb-4">Books</h3>
+      </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {(results.books || []).map((r) => (
           <ResourceCard key={r.externalId} resource={r} type="book" />

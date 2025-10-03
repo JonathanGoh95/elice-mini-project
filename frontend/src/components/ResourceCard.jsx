@@ -1,6 +1,14 @@
 import api from "../services/service.js";
 
-const ResourceCard = ({ resource, onRemove, type }) => {
+const formatProgress = (progress) => {
+  if (!progress) return "Not Started";
+  return progress
+    .split("_")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+};
+
+const ResourceCard = ({ resource, onRemove, onMark, type }) => {
   const save = async () => {
     await api.post("/resources/save", resource);
     alert("Saved!");
@@ -9,6 +17,7 @@ const ResourceCard = ({ resource, onRemove, type }) => {
   const mark = async (status) => {
     if (!resource._id) return alert("Save first");
     await api.post(`/resources/${resource._id}/progress`, { status });
+    if (onMark) onMark(resource._id, status);
     alert("Updated!");
   };
 
@@ -32,7 +41,12 @@ const ResourceCard = ({ resource, onRemove, type }) => {
           }
         />
       )}
-      <h4 className="font-semibold text-lg mb-1">{resource.title}</h4>
+      <h4 className="font-semibold text-lg mb-1">
+        {resource.title}
+        <span className="ml-2 font-normal">
+           (Status: {formatProgress(resource.progress)})
+        </span>
+      </h4>
       <p className="text-sm text-gray-600 flex-1">{resource.description}</p>
       <div className="mt-2 flex space-x-2">
         <button

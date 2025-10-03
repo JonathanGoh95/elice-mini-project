@@ -16,17 +16,25 @@ export default function SavedPage() {
     setSaved((prev) => prev.filter((r) => r._id !== id));
   };
 
+  const handleMark = (id, status) => {
+  setSaved((prev) =>
+    prev.map((r) =>
+      r._id === id ? { ...r, progress: status } : r
+    )
+  );
+};
+
   return (
     <div>
       <div className="flex justify-center">
         <h2 className="text-2xl font-semibold mb-4">Saved Resources</h2>
       </div>
       {saved.length !== 0 ? (
-        saved.map((r) => (
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <ResourceCard key={r._id} resource={r} onRemove={handleRemove} />
-          </div>
-        ))
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {saved.map((r) => (
+            <ResourceCard key={r._id} resource={r} onRemove={handleRemove} onMark={handleMark}/>
+          ))}
+        </div>
       ) : (
         <div className="flex justify-center">
           <h3 className="text-lg">No items saved yet!</h3>
